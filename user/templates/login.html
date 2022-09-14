@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static '/css/login.css' %}">{% endblock css %}
+
+
+{% block content %}
+    <section class="upper">
+        <header class="head" style="padding-top: 1rem !important; height: 3rem !important;">    
+            <nav class="row" id="navbar" style="max-height: 3rem !important; margin-left: 7rem !important;margin-right: 7rem !important;" >
+                <div class="col-1"  id="brand">BTT</div>
+                <div class="col-10" id="middleButtons" style="display: flex; align-items: center;justify-content: center;" >
+                </div >
+                <div class="col-1" id="account_box" style="display: flex;justify-content: flex-end;">
+                    <div id="account"><a href="{% url 'home' %}">Voltar</a></div>
+                </div>
+            </nav>
+        </header>
+    </section>
+
+    <div class="container d-flex flex-column justify-content-center">
+        {% if status == '1' %}
+            <div class="alert alert-warning">Email ou senha incorretos. Por favor, tente novamente, ou crie uma conta.</div>
+        {% endif %}
+        <div class="box col-3 mt-5">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h2>Login</h2>
+                <div class="form-group d-flex gap-3 flex-column mt-5">
+                    <label for="email" class="def_label ms-4">Email:</label>
+                    <input name="email" type="text" class="def_input" style="width:100%; padding-left: 20px !important;">
+                    <label for="password" class="def_label ms-4">Password:</label>
+                    <input name="password" type="password" class="def_input" style="width:100%;font-size: x-large; font-weight: 900; padding-left: 20px !important;">
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Send" id="def_ipt" class="def_input" style="width: 100%;">
+                </div>
+            </form>
+            <div class="row mt-4 d-flex justify-content-center" style="color: #666;">
+                <hr class="col-5 mt-2">
+                <div class="col-2 d-flex align-items-center justify-content-center" style="font-size: small; font-weight: 700;">OR</div>
+                <hr class="col-5 mt-2">
+            </div>
+            <div class="row">   
+                <a href="{% url 'create_account' %}" class="def_input mt-4" id="create_account">Create Account</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

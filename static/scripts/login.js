@@ -1,0 +1,1 @@
+let ipts = document.getElementsByClassName('def_ipt')

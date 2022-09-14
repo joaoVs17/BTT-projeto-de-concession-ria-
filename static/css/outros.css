@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    font-family: "Orbitron", Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow:hidden;
+    min-width: 100vh;
+    width: 100%;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.content-box-slide {
+    position: relative;
+    transition: all 1s;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: all 0.3s;
+    margin-top: 0;
+}
+
+.barItem {
+    padding: 5px;
+    min-width: 8rem;
+    max-width: 10rem;
+    width: 100%;
+    height: 2rem;
+    list-style: none !important;
+    background-color: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+#brand {
+    font-size: larger;
+    font-weight: 900;
+    filter: drop-shadow(3px 3px 3px #666);
+    text-decoration: none;
+    color: black;
+}
+
+.barItem:hover {
+    background: rgb(162, 162, 162, 0.3)
+}
+
+.barItem a {
+    border-radius: 5px;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: medium;
+    text-align: center;
+}
+
+.menucompact {
+    height: 100%;
+    width: auto;
+    border-radius: 100%;
+}
+
+.menucompact:hover {
+    background: rgb(162, 162, 162, 0.3  );
+    filter: blur(2);
+    filter: drop-shadow(1px 1px 1px #666);
+}
+
+.account{
+    font-weight: 600;
+    font-size:medium;
+    height: 3rem;
+    width: auto;
+}
+
+.account a{
+    height: 2.8rem;
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.account a:after{
+    content: "";
+    position: absolute;
+    background-color: black;
+    height: 3px;
+    width: 0%;
+    left: 0;
+    bottom: 10px;
+    transition: 0.3s;
+}
+
+.account a:hover:after{
+    width: 100%;
+}
+
+#middleButtons {
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 1300px) {
+    #middleButtons {
+        display: none !important;
+    }
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+    #account_box{
+        display: none !important;
+    }
+    #menu_box {
+        display: flex !important;
+    }
+}
+
+.userlogo {
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: x-large;
+    font-weight: 900;
+    background-color: rgb(59, 66, 73, 0.5);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
