@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 
@@ -10,4 +11,5 @@ class Carro(models.Model):
     modelo = models.CharField(max_length=50)
     ano = models.CharField(max_length=5)
     cor = models.CharField(max_length=50)
-    foto = models.ImageField(storage=photoCar)
+    foto = models.ImageField(upload_to='carPhotos/', null=True)
+    

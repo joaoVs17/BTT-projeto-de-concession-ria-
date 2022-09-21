@@ -1,10 +1,51 @@
-let btn_below = document.getElementsByClassName('btn_below');
-let slide1 = document.getElementById('slide1');
-let slideA = document.getElementById('slideA');
+let a = document.getElementById('a');
+let b = document.getElementById('b');
+let c = document.getElementById('c');
 
-let valor = 0;
-let slide = 0;
+let timer = 30;
 
+
+let currentMargin = window.getComputedStyle(document.getElementById('slider')).marginLeft;
+    currentMargin = currentMargin.replace('px','');
+    currentMargin = parseInt(currentMargin);
+
+
+
+
+
+setInterval(function(){   
+    console.log(currentMargin)
+    if (currentMargin >= -100) {
+        currentMargin-=100;
+        document.getElementById('slider').setAttribute('style', 'margin-left:'+currentMargin+'vw !important');
+    } else {
+        currentMargin = 0;
+        document.getElementById('slider').setAttribute('style', 'margin-left:'+currentMargin+'vw !important');
+    }
+    if (currentMargin == 0) {
+        a.checked = true;
+    } else if (currentMargin == -100) {
+        b.checked = true;
+    } else if (currentMargin ==-200) {
+        c.checked = true;
+    }
+}, 4000)
+
+
+function aa(){
+    document.getElementById('slider').setAttribute('style', 'margin-left: 0 !important');
+    currentMargin = 0;
+}
+
+function bb() {
+    document.getElementById('slider').setAttribute('style', 'margin-left: -100vw !important');
+    currentMargin = -100
+}
+
+function cc() {
+    document.getElementById('slider').setAttribute('style', 'margin-left: -200vw !important');
+    currentMargin = -200
+}
 
 function bemvindo() {
     document.getElementById('modal').style.display = 'block';
@@ -14,50 +55,4 @@ function fechar() {
     document.getElementById('modal').setAttribute('style', 'display: none !important');
 }
 
-function verify(){
-    if (slide>0) {
-        console.log('batata')
-        document.getElementById('up').disabled = false;
-        document.getElementById('up').style.opacity = '0.5';
-
-    } else if (slide<1) {
-        document.getElementById('up').disabled = true;
-        document.getElementById('up').style.opacity = '0';
-    }
-    if (slide>3) {
-        document.getElementById('down').disabled = true;
-        document.getElementById('down').style.opacity = '0';
-    } else if (slide<4) {
-        document.getElementById('down').disabled = false;
-        document.getElementById('down').style.opacity = '0.5'
-    }
-    
-}
-
-verify();
-
 bemvindo();
-
-
-
-
-function goDown() {
-    if (slide<4) {
-        slide+=1;
-        valor = valor+100;
-        document.getElementById('pp').setAttribute('style', 'margin-top: -'+valor+'vh !important');
-        verify();
-    }  
-}
-
-function goUp() {
-    if (slide>0) {
-        slide -= 1;
-        valor = valor-100;
-        document.getElementById('pp').setAttribute('style', 'margin-top: -'+valor+'vh !important');
-        verify();
-    }
-}
-
-//Para o modal
-

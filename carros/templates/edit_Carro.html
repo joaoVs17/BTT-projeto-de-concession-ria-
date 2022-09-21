@@ -1,35 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Adicionar Carro{% endblock title %}
+{% block title %}Editar Carro{% endblock title %}
 {% block css %}<link rel="stylesheet" href="{% static '/css/add_car.css' %}">{% endblock css %}
 
 {% block content %}
     <div class="container">
         <div class="box">
             <div class="row title">
-                <h1 class="mt-2" style="text-align: center;">Adicionar Carro</h1>
+                <h1 class="mt-2" style="text-align: center;">Editar Carro</h1>
             </div>
             <div class="form">
                 <form action="" method="POST" enctype="multipart/form-data" class="p-5 d-flex gap-5">
                     {% csrf_token %}
                     <div class="form-group d-flex flex-column gap-2 col-6">
                         <label class="def_label ms-4" for="placa">Placa: </label>
-                        <input name="placa" class="def_input col-12" style="padding-left: 20px !important;" type="text" required>
+                        <input name="placa" class="def_input col-12" value="{{ carro.placa }}" style="padding-left: 20px !important;" type="text" required>
                         <label class="def_label ms-4" for="marca">Marca: </label>
-                        <input name="marca" class="def_input col-12" style="padding-left: 20px !important;" type="text" required>
+                        <input name="marca" class="def_input col-12" value="{{ carro.marca }}" style="padding-left: 20px !important;" type="text" required>
                         <label class="def_label ms-4" for="modelo">Modelo: </label>
-                        <input name="modelo" class="def_input col-12" style="padding-left: 20px !important;" type="text" required>
+                        <input name="modelo" class="def_input col-12" value="{{ carro.modelo }}" style="padding-left: 20px !important;" type="text" required>
                         <label class="def_label ms-4" for="ano">Ano: </label>
-                        <input name="ano" class="def_input col-12" style="padding-left: 20px !important;" type="text" required>
+                        <input name="ano" class="def_input col-12" value="{{ carro.ano }}" style="padding-left: 20px !important;" type="text" required>
                         <label class="def_label ms-4" for="cor">Cor: </label>
-                        <input name="cor" class="def_input col-12" style="padding-left: 20px !important;" type="text" required>
+                        <input name="cor" class="def_input col-12" value="{{ carro.cor }}" style="padding-left: 20px !important;" type="text" required>
                     </div>
                     <div class="form-group col-5">
                         <label for="imagem" class="def_label" style="width:100%; text-align:center;">Foto do Carro:</label>
-                        <input type="file" name="foto" class="img_input mt-1" >
+                        <input type="file" name="foto"  class="img_input mt-1" >
                         <div class="form-group" style="width: 100%; height: 81.5%;display: flex; justify-content: flex-end; align-items: flex-end;gap: 1rem;">
-                            <input id="def_ipt" class="def_input required col-3" type="submit" value="Send" accept="image/*" >
-                            <a class="def_input col-3" href="{% url 'carros'%}" id="def_ipt" style="text-decoration: none;display:flex;align-items:center;justify-content: center;">Voltar</a>
+                            <input id="def_ipt" class="def_input col-3" required type="submit" value="Send" accept="image/*">
+                            <a class="def_input col-3" href="{% url 'gerenciar'%}" id="def_ipt" style="text-decoration: none;display:flex;align-items:center;justify-content: center;">Voltar</a>
                         </div>
                     </div>
                 </form>
