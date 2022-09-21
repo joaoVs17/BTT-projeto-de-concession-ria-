@@ -5,30 +5,86 @@
 
 
 {% block content %}
+
+    <header class="head" style="top:20px !important; height: 3rem !important; position: fixed; width: 100%;z-index: 9000;">    
+            <nav class="row" id="navbar" style="max-height: 3rem !important; margin-left: 7rem !important;margin-right: 7rem !important;" >
+                <a href="{% url 'home' %}" class="col-1" id="brand"
+            style="display: flex;align-items:center; justify-content:center;">BTT</a>
+                <div class="col-9" id="middleButtons" style="display: flex; align-items: center;justify-content: center;" >
+                    <ul class="barItems" style="display: flex; gap: 2rem; flex-direction: row; align-items: center; justify-content: center;">
+                        <li class="barItem"><a href="#">Modelo 1</a></li>
+                        <li class="barItem"><a href="#">Modelo 2</a></li>
+                        <li class="barItem"><a href="#">Modelo 3</a></li>
+                        <li class="barItem"><a href="#">Modelo 4</a></li>
+                    </ul>
+                </div >
+                <div class="col-2" id="account_box" style="display: flex;justify-content: flex-end;flex-direction: row;">
+                    <div class="account" style="width:100%; display: flex; align-items:center; justify-content:center; gap: 1rem;"><a style="height: 100%;display: flex; align-items:center; justify-content:center;" href="#">Shop</a></div>
+                    {% if request.user.is_authenticated %}
+                    <div class="account" style="width:100%; display: flex; align-items:center; justify-content:center; gap: 1rem;"><a style="height: 100%;display: flex; align-items:center; justify-content:center;" href="{% url 'exit' %}">Sair</a><div class="userlogo">{{request.user.username.0}}</div></div>
+                    
+                    {% else %}
+                    <div class="account" style="display: flex; align-items:center; justify-content:center;"><a style="width: 100%;height: 100%;display: flex; align-items:center; justify-content:center;" href="{% url 'login' %}">Account</a></div>
+                    {% endif %}
+                </div>
+                <div class="col-1" id="menu_box" style="display: none;justify-content: flex-end;">
+                    <div class="navEnd" id="menucompact" ><img style="width: auto;height:3rem;" src="{%static '/imgs/menu.png'%}" alt=""></div>
+                </div>
+            </nav>
+        </header>
+
+    <div class="content-box-slide" id="pp">
+
+        <!--Slides-->
+
         <section class="main" id="sla">
-            <header class="head" style="top:20px !important; height: 3rem !important; position: fixed; width: 100%;z-index: 9000;">    
-                <nav class="row" id="navbar" style="max-height: 3rem !important; margin-left: 7rem !important;margin-right: 7rem !important;" >
-                    <a href="{% url 'home' %}" class="col-1"  id="brand" style="display: flex;align-items:center; justify-content:center;">BTT</a>
-                    <div class="col-9" id="middleButtons" style="display: flex; align-items: center;justify-content: center;" >
-                        <ul class="barItems" style="display: flex; gap: 2rem; flex-direction: row; align-items: center; justify-content: center;">
-                            
-                        </ul>
-                    </div >
-                    <div class="col-2" id="account_box" style="display: flex;justify-content: flex-end;flex-direction: row;">
-                        <div class="account" style="width:100%; display: flex; align-items:center; justify-content:center; gap: 1rem;"><a style="height: 100%;display: flex; align-items:center; justify-content:center;" href="{% url 'carros'%}">Shop</a></div>
-                        {% if request.user.is_authenticated %}
-                        <div class="account" style="width:100%; display: flex; align-items:center; justify-content:center; gap: 1rem;"><a style="height: 100%;display: flex; align-items:center; justify-content:center;" href="{% url 'exit' %}">Sair</a><div class="userlogo">{{request.user.username.0}}</div></div>
-                        
-                        {% else %}
-                        <div class="account" style="display: flex; align-items:center; justify-content:center;"><a style="width: 100%;height: 100%;display: flex; align-items:center; justify-content:center;" href="{% url 'login' %}">Account</a></div>
-                        {% endif %}
+            <div class="center_message">
+                <div class="tInfo">
+                    <h2 style="text-align: center; width: 100%;">O que deseja?</h2>
+                    <p style="text-align: center;width:100%"></p>
+                </div>
+                <div class="buttonArea">
+                    <a class="d_button" href="{% url 'gerenciar' %}">Ver todos os carros</a>
+                    <a class="d_button" href="">Seguro</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="slide" id="slide1" style="overflow: hidden;background-color: #eee;">
+            <div class="title">Favoritos</div>
+            <div class="swiper" id="swiper">
+                <button class="sides" style="left: 10px;" id="left" onclick="left();">
+                    <img src="{% static '/imgs/goLeft.png' %}" id="goLeft" alt="">
+                </button>
+                {% for carro in carros %}
+                <a href="{% url 'carro' carro.pk%}" style="text-decoration: none;">
+                    <div class="card" style="background-image: url('{{carro.foto.url}}');">
+                        <div class="bt_link"><div class="sbuy">Comprar</div></div>
                     </div>
-                    <div class="col-1" id="menu_box" style="display: none;justify-content: flex-end;">
-                        <div class="navEnd" id="menucompact" ><img style="width: auto;height:3rem;" src="{%static '/imgs/menu.png'%}" alt=""></div>
-                    </div>
-                </nav>
-            </header>
+                </a>
+                {% endfor %}
+                <button class="sides" style="right: 10px !important;" id="right" onclick="right();">
+                    <img src="{% static '/imgs/goRight.png' %}" id="goRight" alt="">
+                </button>
+            </div>
         </section>
 
+        <!--Fim slides-->
+    </div>
+
+    <!--Modal Bem-Vindo-->
+
+    
+    <!--Fim Modal Bem-Vindo-->
+
+    <button class="btn_up" id="up" onclick="goUp();" style="height: 2rem;width: 2rem; background: transparent; border: none;position: fixed;left: 48.8%;top: 80px; opacity: 0.5;">
+        <img style="height: 100%; width:100%;" src="{% static '/imgs/GoUp.png'%}" alt="">
+    </button>
+
+    <button class="btn_below" id="down" onclick="goDown();" style="height: 2rem;width: 2rem; background: transparent; border: none;position: fixed;left: 48.8%;bottom: 40px; opacity: 0.5;">
+        <img style="height: 100%; width:100%;" src="{% static '/imgs/GoDown.png'%}" alt="">
+    </button>
+
+    <script src="{% static '/scripts/outros.js'%}"></script>
 {% endblock content %}
 
